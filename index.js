@@ -128,7 +128,7 @@ and should return a new array that is identical to the old array. You can name t
 
 function copy(a1, a2){
 
-    a1.foreach(function(item, index){a2[index] = item;});
+    a1.forEach((value, index) => a2[index] = value);
     return a2;
 
 }
@@ -150,9 +150,9 @@ hint - you can use the .includes method to help you solve this */
 
 function filterByWord(a, search){
 
-    let results;
+    let results = [];
     for (let i = 0; i < a.length; i++) {
-        if (a[i] === search) results.push(a[i]);
+        if (a[i].includes(search)) results.push(a[i]);
     }
     return results;
 
@@ -174,9 +174,9 @@ For example, getAverageWordLength(originalFlavors) should return a number betwee
 
 function getAverageWordLength(a){
 
-    let totalWords;
-    a.foreach(function(item) {totalWords += item.split(" ").length;});
-    return totalWords / a.length;
+    let total = 0;
+    a.forEach(item => total += item.split(" ").length);
+    return total / a.length;
 
 }
 
