@@ -40,9 +40,9 @@ To save you from having to count the items above, you can assume that length of 
 
 i.e. is31Flavors(originalFlavors) will return TRUE.*/
 
-function is31Flavors(/*code here*/){
+function is31Flavors(a){
 
-    /*code here*/
+    return (a.length === 31);
 
 }
 
@@ -57,9 +57,10 @@ Your function should add the flavor to the front of the array and console.log th
 
 For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"] */ 
 
-function addFlavor(/*code here*/){
+function addFlavor(flavor, a){
 
-    /*code here*/
+    a.unshift(flavor);
+    return a;
 
 }
 
@@ -74,9 +75,10 @@ Your function should remove a flavor from the end of the array and console.log t
 
 For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/ 
 
-function removeLastFlavor(/*code here*/){
+function removeLastFlavor(a){
 
-    /*code here*/
+    a.pop();
+    return a;
 
 }
 
@@ -89,9 +91,9 @@ Your function should accept:
 
 For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
 
-function getFlavorByIndex(/*code here*/){
+function getFlavorByIndex(a, i){
 
-    /*code here*/
+    return a[i];
 
 }
 
@@ -108,9 +110,10 @@ Hint: You can use .splice() for this
 
 */
 
-function removeFlavorByName(/*code here*/){
+function removeFlavorByName(a, flavor){
 
-    /*code here*/
+    a.splice(a.indexOf(flavor),1);
+    return a;
 
 }
 
@@ -123,9 +126,10 @@ Your function should accept:
 
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
 
-function copy(/*code here*/){
+function copy(a1, a2){
 
-    /*code here*/
+    a1.foreach(function(item, index){a2[index] = item;});
+    return a2;
 
 }
 
@@ -144,9 +148,13 @@ DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem.
 
 hint - you can use the .includes method to help you solve this */
 
-function filterByWord(/*code here*/){
+function filterByWord(a, search){
 
-    /*code here*/
+    let results;
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] === search) results.push(a[i]);
+    }
+    return results;
 
 }
 
@@ -164,9 +172,11 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength(/*code here*/){
+function getAverageWordLength(a){
 
-    /*code here*/
+    let totalWords;
+    a.foreach(function(item) {totalWords += item.split(" ").length;});
+    return totalWords / a.length;
 
 }
 
@@ -252,8 +262,16 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors(/*code here*/){
+function getRandomFlavors(a1, a2, a3, a4){
 
-    /*code here*/
+    let allFlavors = a1.concat(a2, a3, a4);
+
+    let rand;
+    let finalFlavors = [];
+    for (let i = 0; i < 31; i++) {
+        rand = (Math.random() * 1000) % allFlavors.length;
+        finalFlavors.push(allFlavors.splice(rand, 1)[0]);
+    }
+    return finalFlavors;
 
 }
